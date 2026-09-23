@@ -1,0 +1,6 @@
+[
+  {"reference_id":"KB-001","title":"Fictional evidence review procedure","text":"A synthetic claim should be sent to human evidence review when a required field is unreadable, missing, or contradictory.","authority":"controlled_reference"},
+  {"reference_id":"KB-002","title":"Fictional provenance note","text":"Human-verified or human-corrected evidence has higher operational trust than uncertain OCR candidates.","authority":"controlled_reference"},
+  {"reference_id":"KB-003","title":"Fictional handoff guidance","text":"A decision-support handoff summarizes evidence for a human decision-maker and never changes official claim status.","authority":"controlled_reference"}
+]
+

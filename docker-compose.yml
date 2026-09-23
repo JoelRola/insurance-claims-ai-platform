@@ -1,0 +1,18 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONPATH: /app/backend
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: insurance_demo
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo_only_local
+    ports:
+      - "5432:5432"
+
