@@ -1,5 +1,8 @@
 # Frontend
 
-The first iteration exposes the FastAPI OpenAPI interface. A richer frontend
-can be added later without changing the human-decision safety boundary.
+The demo UI uses FastAPI templates, semantic HTML and lightweight CSS/JS-free
+navigation. It is intentionally small enough to inspect and screenshot.
 
+Pages include the overview dashboard, synthetic claim list/detail, AI analysis,
+human evidence review, decision support, audit timeline, architecture and
+safety boundaries.

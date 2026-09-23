@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.agent.claim_analysis_agent import ClaimAnalysisAgent
 from app.agent.tools import ReadOnlyAgentTools
@@ -8,7 +9,7 @@ from app.api.routes_claims import router as claims_router
 from app.api.routes_handoffs import router as handoff_router
 from app.api.routes_health import router as health_router
 from app.api.routes_reviews import router as reviews_router
-from app.config import KNOWLEDGE_BASE, SYNTHETIC_CLAIMS
+from app.config import KNOWLEDGE_BASE, ROOT, SYNTHETIC_CLAIMS
 from app.repositories.audit import AuditRepository
 from app.repositories.claims import ClaimsRepository
 from app.repositories.evidence import EvidenceRepository
@@ -16,10 +17,12 @@ from app.repositories.reviews import ReviewsRepository
 from app.services.case_resolution import CaseResolver
 from app.services.handoffs import HandoffRepository
 from app.services.retrieval import ControlledRetriever
+from app.ui import router as ui_router
 
 
 def create_app() -> FastAPI:
     app = FastAPI(title="Insurance Claims AI Platform", version="0.1.0", description="Synthetic, auditable insurance claim decision support.")
+    app.mount("/static", StaticFiles(directory=str(ROOT / "frontend" / "static")), name="static")
     app.state.claims = ClaimsRepository(SYNTHETIC_CLAIMS)
     app.state.evidence = EvidenceRepository()
     app.state.reviews = ReviewsRepository()
@@ -28,6 +31,7 @@ def create_app() -> FastAPI:
     app.state.resolver = CaseResolver(app.state.claims)
     app.state.handoffs = HandoffRepository()
     app.state.agent = ClaimAnalysisAgent(app.state.retriever)
+    app.state.analysis_runs = {}
     for claim in app.state.claims.list():
         for field, value in claim.structured_facts.items():
             from datetime import datetime, timezone
@@ -45,8 +49,8 @@ def create_app() -> FastAPI:
     app.include_router(reviews_router)
     app.include_router(handoff_router)
     app.include_router(audit_router)
+    app.include_router(ui_router)
     return app
 
 
 app = create_app()
-

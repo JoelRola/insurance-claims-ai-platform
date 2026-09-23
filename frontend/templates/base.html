@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or product_name }}</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">IC</span><span>{{ product_name }}</span></a>
+    <nav aria-label="Primary navigation">
+      <a class="{% if active == 'home' %}active{% endif %}" href="/">Overview</a>
+      <a class="{% if active == 'claims' %}active{% endif %}" href="/claims-ui">Claims</a>
+      <a class="{% if active == 'architecture' %}active{% endif %}" href="/architecture">Architecture</a>
+      <a class="{% if active == 'safety' %}active{% endif %}" href="/safety">Safety</a>
+    </nav>
+    <span class="demo-pill">Synthetic demo</span>
+  </header>
+  <main class="shell">{% block content %}{% endblock %}</main>
+  <footer class="footer"><span>Claims Intelligence Demo</span><span>Decision support · human decision required</span></footer>
+</body>
+</html>

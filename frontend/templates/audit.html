@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="breadcrumbs"><a href="/claims-ui/{{ claim.case_id }}">{{ claim.case_id }}</a><span>/</span><span>Audit timeline</span></div>
+<section class="page-header"><div><p class="eyebrow">ACCOUNTABILITY</p><h1>Audit timeline</h1><p>Human-readable events from the synthetic claim workflow.</p></div><span class="small-label">Append-only</span></section>
+<section class="panel timeline-panel">{% for event in events|reverse %}<div class="timeline-item"><span class="timeline-marker"></span><div><strong>{{ event.event_type|replace('_', ' ')|title }}</strong><p>{{ event.metadata|join(', ') if event.metadata else 'Workflow event recorded' }}</p></div><time>{{ event.timestamp[11:16] }}</time></div>{% else %}<div class="empty-state"><span class="success-icon">·</span><div><strong>No events yet</strong><p>Run an analysis or review action to populate this timeline.</p></div></div>{% endfor %}</section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header"><div><p class="eyebrow">SAFETY BY DESIGN</p><h1>Clear system boundaries</h1><p>The demo makes its limits visible instead of hiding them behind AI language.</p></div></section>
+<section class="safety-grid"><div class="panel safety-allowed"><p class="eyebrow">THE AGENT CAN</p><h2>Support analysis</h2><ul class="check-list"><li>Inspect synthetic claim data</li><li>Inspect evidence provenance</li><li>Retrieve fictional reference knowledge</li><li>Identify blockers and uncertainty</li><li>Create evidence-backed recommendations</li></ul></div><div class="panel safety-blocked"><p class="eyebrow">THE AGENT CANNOT</p><h2>Make the decision</h2><ul class="check-list"><li>Approve claims</li><li>Reject claims</li><li>Initiate payments</li><li>Send emails</li><li>Modify external systems</li></ul></div></section>
+<section class="panel"><p class="eyebrow">AUTHORITY ORDER</p><div class="authority-list"><div><strong>01</strong><span>Structured operational data</span></div><div><strong>02</strong><span>Human-verified evidence</span></div><div><strong>03</strong><span>Controlled synthetic references</span></div><div><strong>04</strong><span>Agent synthesis</span></div><div><strong>05</strong><span>Human decision-maker</span></div></div></section>
+{% endblock %}
